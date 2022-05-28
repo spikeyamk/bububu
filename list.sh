@@ -6,7 +6,7 @@ read
 
 # Removing snap
 echo "1. Removing snaps... [1/15]"
-sudo apt remove --purge --assume-yes snapd gnome-software-plugin-snap
+sudo apt remove --purge --assume-yes snapd
 
 # Updating the system
 echo "2. Updating the system... [2/15]"
@@ -15,7 +15,7 @@ sudo apt upgrade
 
 # Install firefox from PPA
 echo "3. Installing firefox... [3/15]"
-suod add-apt-repository ppa:mozillateam/ppa
+sudo add-apt-repository ppa:mozillateam/ppa
 echo '
 Package: *
 Pin: release o=LP-PPA-mozillateam
@@ -23,14 +23,14 @@ Pin-Priority: 1001
 ' | sudo tee /etc/apt/preferences.d/mozilla-firefox
 echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
 sudo apt update
-sudo apt install firefox
+sudo apt install -y firefox
 
 # Install spotify from PPA
 echo "4. Installing spotify... [4/15]"
 curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo apt-key add - 
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt-get update 
-sudo apt-get install spotify-client
+sudo apt-get install -y spotify-client
 
 # Installing basic programs from standard ubuntu repos
 echo "5. Installing more programs... [5/15]"
